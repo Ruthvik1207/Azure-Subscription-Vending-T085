@@ -80,7 +80,8 @@ function showResult(
 
     const needsAttention = [
         "exception",
-        "rejected"
+        "rejected",
+        "error"
     ].includes(statusClass);
 
     resultBox.classList.remove(

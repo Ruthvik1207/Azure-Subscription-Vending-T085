@@ -217,7 +217,7 @@ app.post("/api/validate", async (req, res) => {
             environment,
             region,
             owner
-        } = req.body;
+        } = req.body || {};
 
 
         // ----------------------------------------------
@@ -225,11 +225,8 @@ app.post("/api/validate", async (req, res) => {
         // ----------------------------------------------
 
         if (
-            !requester ||
-            !projectCode ||
-            !environment ||
-            !region ||
-            !owner
+            ![requester, projectCode, environment, region, owner]
+                .every((value) => typeof value === "string" && value.trim())
         ) {
 
             return res.status(400).json({
@@ -340,9 +337,38 @@ app.post("/api/validate", async (req, res) => {
                         : "Exception",
 
                 message:
-                    responseText ||
-                    "Azure returned no message."
+                    azureResponse.ok
+                        ? responseText || "Azure returned no message."
+                        : ""
 
+            };
+
+        }
+
+        if (
+            !azureData ||
+            typeof azureData !== "object" ||
+            Array.isArray(azureData)
+        ) {
+
+            azureData = {
+                status: azureResponse.ok ? "Approved" : "Exception",
+                message: azureResponse.ok
+                    ? responseText || "Azure returned no message."
+                    : ""
+            };
+
+        }
+
+        if (!azureResponse.ok) {
+
+            azureData = {
+                ...azureData,
+                status: "Exception",
+                message:
+                    typeof azureData.message === "string" && azureData.message.trim()
+                        ? azureData.message
+                        : `Azure Logic App returned HTTP ${azureResponse.status}. This request needs review.`
             };
 
         }
@@ -394,6 +420,27 @@ app.post("/api/validate", async (req, res) => {
         });
 
     }
+
+});
+
+
+app.use((error, req, res, next) => {
+
+    if (res.headersSent) {
+        return next(error);
+    }
+
+    const invalidJson =
+        error.type === "entity.parse.failed";
+
+    console.error("Request processing error:", error);
+
+    return res.status(invalidJson ? 400 : 500).json({
+        status: invalidJson ? "Rejected" : "Error",
+        message: invalidJson
+            ? "Request body must contain valid JSON."
+            : "An unexpected server error occurred."
+    });
 
 });
 
