@@ -1,0 +1,10 @@
+{
+  "name": "azure-subscription-vending",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Azure subscription vending and onboarding workspace",
+  "scripts": {
+    "start": "npm --prefix backend start",
+    "dev": "npm --prefix backend run dev"
+  }
+}

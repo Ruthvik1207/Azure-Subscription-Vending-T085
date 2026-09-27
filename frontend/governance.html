@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f5f6ef">
+    <title>Azure Subscription Vending | Governance</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Source+Sans+3:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="portal.css?v=3">
+</head>
+<body>
+    <a class="skip-link" href="#main">Skip to workspace</a>
+    <header class="topbar">
+        <a class="brand" href="home.html" aria-label="Azure Subscription Vending home"><span class="brand-mark" aria-hidden="true">✦</span><span class="brand-copy"><strong>Azure Subscription Vending</strong><small>T085-P085 / WORKSPACE</small></span></a>
+        <nav class="top-nav" aria-label="Main navigation"><a class="nav-link" href="home.html">Home</a><a class="nav-link" href="request.html">Request</a><a class="nav-link active" href="governance.html" aria-current="page">Governance</a><a class="nav-link" href="resources.html">Azure resources</a></nav>
+        <div id="connectionStatus" class="connection-state" data-state="checking" role="status" aria-live="polite"><span class="connection-dot"></span><span>Checking backend</span></div>
+    </header>
+    <main id="main" class="workspace page-content">
+        <section class="page-heading" aria-labelledby="page-title"><div class="eyebrow"><span class="eyebrow-line"></span>02 / OWNERSHIP & CONTROLS</div><h1 id="page-title">Governance, made clear.</h1><p>Define who owns each decision and make every new subscription compliant by default.</p></section>
+        <section class="team-panel" aria-labelledby="team-title">
+            <div class="team-panel-main"><div class="eyebrow"><span class="eyebrow-line"></span>PROJECT GOVERNANCE TEAM</div><h2 id="team-title">Team T085</h2><p>Four student members in the T085-P085 Azure subscription vending project.</p><div class="team-facts"><span><strong>T085-P085</strong><small>PROJECT CODE</small></span><span><strong>04</strong><small>TEAM MEMBERS</small></span><span><strong>Azure</strong><small>PLATFORM SCOPE</small></span></div></div>
+            <div class="team-panel-note"><span class="note-mark">i</span><p>Member names were not provided. Governance assignments below are role-based and should be assigned to named team members before launch.</p></div>
+        </section>
+        <section class="content-section role-section" aria-labelledby="roles-title"><div class="section-heading"><div><div class="eyebrow"><span class="eyebrow-line"></span>TEAM RESPONSIBILITIES</div><h2 id="roles-title">Put a name to each decision.</h2></div><p>These roles make ownership explicit. Assign each to a T085 team member as the process is agreed.</p></div><div class="role-grid"><article class="role-card"><span class="role-index">01</span><span class="role-state">ASSIGN OWNER</span><h3>Governance lead</h3><p>Maintains the request standard and coordinates policy decisions.</p></article><article class="role-card"><span class="role-index">02</span><span class="role-state">ASSIGN OWNER</span><h3>Subscription owner</h3><p>Accepts accountability for lifecycle, metadata and cost ownership.</p></article><article class="role-card"><span class="role-index">03</span><span class="role-state">ASSIGN OWNER</span><h3>Policy & access reviewer</h3><p>Confirms allowed regions, baseline controls and access requirements.</p></article><article class="role-card"><span class="role-index">04</span><span class="role-state">ASSIGN OWNER</span><h3>Exception approver</h3><p>Reviews unsupported requests, records rationale and returns decisions.</p></article></div></section>
+        <section class="content-section governance-section" aria-labelledby="controls-title"><div class="section-heading"><div><div class="eyebrow"><span class="eyebrow-line"></span>SUBSCRIPTION BASELINE</div><h2 id="controls-title">Controls for every request.</h2></div><p>Confirm these controls with the organisation before calling the workflow production-ready.</p></div><div class="control-list"><div class="control-row"><span class="control-count">A</span><div><strong>Allowed regions</strong><small>Keep the approved region list current; send out-of-policy requests to review.</small></div><span class="control-status pending"><i></i>AGREE</span></div><div class="control-row"><span class="control-count">B</span><div><strong>Project and subscription ownership</strong><small>Require an authorized project code and an accountable subscription owner.</small></div><span class="control-status pending"><i></i>AGREE</span></div><div class="control-row"><span class="control-count">C</span><div><strong>Tags, access and policy</strong><small>Apply required metadata, baseline policy and role-based access before handoff.</small></div><span class="control-status pending"><i></i>VERIFY</span></div><div class="control-row"><span class="control-count">D</span><div><strong>Exceptions and audit trail</strong><small>Record the reviewer, rationale and outcome; notify the requester.</small></div><span class="control-status pending"><i></i>DESIGN</span></div></div><div class="agreement-footer"><span class="agreement-icon" aria-hidden="true">↗</span><p><strong>Process design requires organisational agreement.</strong> Name the policy approver and exception owner before the workflow is treated as policy.</p></div></section>
+    </main>
+    <footer class="page-footer"><a class="brand footer-brand" href="home.html"><span class="brand-mark" aria-hidden="true">✦</span><span class="brand-copy"><strong>Azure Subscription Vending</strong><small>T085-P085 / PROCESS DESIGN</small></span></a><span>GOVERNED SUBSCRIPTION ONBOARDING</span></footer>
+    <script src="app.js" defer></script>
+</body>
+</html>

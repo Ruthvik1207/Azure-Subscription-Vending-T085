@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f5f6ef">
+    <meta http-equiv="refresh" content="0; url=home.html">
+    <title>Azure Subscription Vending</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Source+Sans+3:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="portal.css">
+</head>
+<body>
+    <a class="skip-link" href="#main">Skip to workspace</a>
+    <header class="topbar">
+        <a class="brand" href="#main" aria-label="Subscription Vending home">
+            <span class="brand-mark" aria-hidden="true">SV</span>
+            <span class="brand-copy"><strong>Subscription Vending</strong><small>ONBOARDING WORKSPACE</small></span>
+        </a>
+        <nav class="top-nav" aria-label="Main navigation">
+            <a class="nav-link active" href="#request-section">Request</a>
+            <a class="nav-link" href="#governance">Governance</a>
+            <a class="nav-link" href="#resources">Azure resources</a>
+        </nav>
+        <div id="connectionStatus" class="connection-state" data-state="checking" role="status" aria-live="polite"><span class="connection-dot"></span><span>Checking backend</span></div>
+    </header>
+
+    <main id="main" class="workspace">
+        <section class="intro" aria-labelledby="page-title">
+            <div class="intro-main">
+                <div class="eyebrow"><span class="eyebrow-line"></span>PROCESS DESIGN / 2026</div>
+                <h1 id="page-title">A better way<br>to <span>open Azure.</span></h1>
+                <p class="intro-copy">One repeatable path from subscription request to governed onboarding. Checks happen up front; exceptions get a human route, not a dead end.</p>
+                <div class="intro-actions">
+                    <button class="primary-button" type="button" onclick="scrollToRequest()"><span aria-hidden="true">＋</span> Start a request</button>
+                    <a class="text-link" href="#workflow">See the process <span aria-hidden="true">↘</span></a>
+                </div>
+            </div>
+            <aside class="cohort-panel" aria-label="Project governance teams">
+                <div class="cohort-heading"><span>GOVERNANCE TEAM</span><span class="cohort-index">01 ACTIVE</span></div>
+                <div class="cohort-team"><span class="team-code">T085</span><span class="team-meta"><strong>Team T085</strong><small>4 students</small></span><span class="team-dot cyan"></span></div>
+                <div class="cohort-total"><span>Project cohort</span><strong>04 <small>students</small></strong></div>
+                <p class="agreement-note"><span aria-hidden="true">↗</span> Confirm ownership, naming and exception policy before launch.</p>
+            </aside>
+        </section>
+
+        <section class="signal-strip" aria-label="Process goals">
+            <div class="signal"><span class="signal-number">01</span><span><strong>Repeatable intake</strong><small>Same questions, every time</small></span></div>
+            <div class="signal"><span class="signal-number">02</span><span><strong>Compliance by default</strong><small>Validate before onboarding</small></span></div>
+            <div class="signal"><span class="signal-number">03</span><span><strong>Exceptions have a route</strong><small>Manual review when needed</small></span></div>
+            <div class="signal-state"><span class="signal-state-dot"></span>DESIGN IN PROGRESS</div>
+        </section>
+
+        <section class="content-section request-layout" id="request-section" aria-labelledby="request-title">
+            <div class="section-aside">
+                <div class="eyebrow"><span class="eyebrow-line"></span>01 / SUBMIT</div>
+                <h2 id="request-title">Start with<br>the request.</h2>
+                <p>Give the workflow enough context to validate the project and route it to the right onboarding path.</p>
+                <div class="aside-note"><span class="note-mark">i</span><span>Requests are checked by the Azure Logic App. An exception is surfaced for review instead of being silently approved.</span></div>
+            </div>
+            <div class="request-panel">
+                <div class="panel-topline"><span>NEW SUBSCRIPTION REQUEST</span><span class="mono-label">FORM / 01</span></div>
+                <form id="requestForm">
+                    <div class="form-grid">
+                        <div class="field"><label for="requester">Requested by</label><input id="requester" name="requester" type="text" value="PG Team" placeholder="Name or team" autocomplete="name" required></div>
+                        <div class="field"><label for="projectCode">Project code</label><input id="projectCode" name="projectCode" type="text" value="T085-P085" placeholder="e.g. T085-P085" required><small>Use the approved project identifier.</small></div>
+                        <div class="field"><label for="environment">Environment</label><select id="environment" name="environment"><option value="Development">Development</option><option value="Test">Test</option><option value="Production">Production</option></select></div>
+                        <div class="field"><label for="region">Requested Azure region</label><select id="region" name="region"><option value="indiasouthcentral">India South Central</option><option value="indonesiacentral">Indonesia Central</option><option value="koreacentral">Korea Central</option><option value="uaenorth">UAE North</option><option value="eastasia">East Asia</option><option value="centralindia">Central India</option></select></div>
+                        <div class="field field-wide"><label for="owner">Subscription owner</label><input id="owner" name="owner" type="text" value="T085-Team" placeholder="Team or accountable owner" required></div>
+                    </div>
+                    <div class="form-footer"><span class="required-note"><span aria-hidden="true">*</span> Required for validation</span><button type="submit" class="primary-button submit-button"><span>Validate request</span><span aria-hidden="true">→</span></button></div>
+                </form>
+                <div id="result" class="result hidden" role="status" aria-live="polite"></div>
+                <details class="demo-tools"><summary>Try a sample response</summary><div class="demo-actions"><button type="button" class="demo-button" id="validDemo">Valid request</button><button type="button" class="demo-button" id="regionDemo">Region exception</button><button type="button" class="demo-button" id="projectDemo">Project exception</button></div></details>
+            </div>
+        </section>
+
+        <section class="content-section workflow-section" id="workflow" aria-labelledby="workflow-title">
+            <div class="section-heading"><div><div class="eyebrow"><span class="eyebrow-line"></span>02 / DECISION PATH</div><h2 id="workflow-title">Checks first. Then provision.</h2></div><p>Automation handles the standard path and makes room for people when policy or context needs a decision.</p></div>
+            <div class="workflow-track">
+                <article class="workflow-step"><span class="step-index">01</span><span class="step-symbol">↳</span><h3>Request captured</h3><p>Requester, project, environment, region and accountable owner are recorded.</p><span class="step-owner">REQUESTER</span></article>
+                <article class="workflow-step"><span class="step-index">02</span><span class="step-symbol">⌕</span><h3>Governance checks</h3><p>Project and region are checked against the agreed onboarding rules.</p><span class="step-owner">AUTOMATION</span></article>
+                <article class="workflow-step"><span class="step-index">03</span><span class="step-symbol">✓</span><h3>Onboard or review</h3><p>Approved requests continue; exceptions are returned for human review.</p><span class="step-owner">DECISION</span></article>
+            </div>
+            <div class="exception-band"><div class="exception-icon" aria-hidden="true">!</div><div><strong>When automation can’t decide</strong><p>Route to a named reviewer, include the reason and request context, and return a decision to the requester. Agree the owner and response time before launch.</p></div><span class="exception-tag">EXCEPTION PATH</span></div>
+        </section>
+
+        <section class="content-section governance-section" id="governance" aria-labelledby="governance-title">
+            <div class="section-heading"><div><div class="eyebrow"><span class="eyebrow-line"></span>03 / GOVERNANCE</div><h2 id="governance-title">Make compliance the default.</h2></div><p>Controls to agree and verify for every new subscription, not assumptions that a request is compliant.</p></div>
+            <div class="control-list">
+                <div class="control-row"><span class="control-count">A</span><div><strong>Allowed regions</strong><small>Confirm the approved region list and define how requests outside it are reviewed.</small></div><span class="control-status pending"><i></i>AGREE</span></div>
+                <div class="control-row"><span class="control-count">B</span><div><strong>Project and ownership</strong><small>Require an authorized project code and an accountable subscription owner.</small></div><span class="control-status pending"><i></i>AGREE</span></div>
+                <div class="control-row"><span class="control-count">C</span><div><strong>Tags, access and policy</strong><small>Apply required metadata, baseline policy and role-based access before handoff.</small></div><span class="control-status pending"><i></i>VERIFY</span></div>
+                <div class="control-row"><span class="control-count">D</span><div><strong>Exceptions and audit trail</strong><small>Record the decision, reviewer and rationale; notify the requester on resolution.</small></div><span class="control-status pending"><i></i>DESIGN</span></div>
+            </div>
+            <div class="agreement-footer"><span class="agreement-icon" aria-hidden="true">↗</span><p><strong>Process design needs organisational agreement.</strong> Confirm who can approve exceptions and which controls are mandatory before this workflow is treated as policy.</p></div>
+        </section>
+
+        <section class="content-section resources-section" id="resources" aria-labelledby="resources-title">
+            <div class="section-heading resources-heading"><div><div class="eyebrow"><span class="eyebrow-line"></span>04 / AZURE</div><h2 id="resources-title">Environment snapshot.</h2></div><button class="refresh-button" type="button" onclick="loadAzureResources()" aria-label="Refresh Azure resources" title="Refresh Azure resources">↻</button></div>
+            <p id="resourceStatus" class="resource-status" role="status" aria-live="polite">Connecting to Azure Resource Manager...</p>
+            <div id="resourcesContainer" class="resources-grid"></div>
+        </section>
+    </main>
+
+    <footer class="page-footer"><a class="brand footer-brand" href="#main"><span class="brand-mark" aria-hidden="true">SV</span><span class="brand-copy"><strong>Subscription Vending</strong><small>T085 / PROCESS DESIGN</small></span></a><span>AZURE ONBOARDING / GOVERNANCE WORKSPACE</span></footer>
+    <script src="app.js" defer></script>
+</body>
+</html>

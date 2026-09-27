@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f5f6ef">
+    <title>Azure Subscription Vending | Azure Resources</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Source+Sans+3:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="portal.css?v=3">
+</head>
+<body>
+    <a class="skip-link" href="#main">Skip to workspace</a>
+    <header class="topbar">
+        <a class="brand" href="home.html" aria-label="Azure Subscription Vending home"><span class="brand-mark" aria-hidden="true">✦</span><span class="brand-copy"><strong>Azure Subscription Vending</strong><small>T085-P085 / WORKSPACE</small></span></a>
+        <nav class="top-nav" aria-label="Main navigation"><a class="nav-link" href="home.html">Home</a><a class="nav-link" href="request.html">Request</a><a class="nav-link" href="governance.html">Governance</a><a class="nav-link active" href="resources.html" aria-current="page">Azure resources</a></nav>
+        <div id="connectionStatus" class="connection-state" data-state="checking" role="status" aria-live="polite"><span class="connection-dot"></span><span>Checking backend</span></div>
+    </header>
+    <main id="main" class="workspace page-content">
+        <section class="page-heading" aria-labelledby="page-title"><div class="eyebrow"><span class="eyebrow-line"></span>03 / LIVE ENVIRONMENT</div><h1 id="page-title">Azure resources.</h1><p>Read-only inventory from the configured Azure resource group.</p></section>
+        <section class="resource-workspace" aria-labelledby="inventory-title"><div class="resource-toolbar"><div><h2 id="inventory-title">Resource inventory</h2><p>Live resources, locations, provisioning state and tags.</p></div><button class="refresh-button" type="button" onclick="loadAzureResources()" aria-label="Refresh Azure resources" title="Refresh Azure resources">↻</button></div><p id="resourceStatus" class="resource-status" role="status" aria-live="polite">Connecting to Azure Resource Manager...</p><div id="resourcesContainer" class="resources-grid"></div></section>
+        <aside class="resource-note"><span class="note-mark">i</span><p>This inventory is read-only. Azure sign-in and access permissions are required to retrieve live resources.</p></aside>
+    </main>
+    <footer class="page-footer"><a class="brand footer-brand" href="home.html"><span class="brand-mark" aria-hidden="true">✦</span><span class="brand-copy"><strong>Azure Subscription Vending</strong><small>T085-P085 / PROCESS DESIGN</small></span></a><span>GOVERNED SUBSCRIPTION ONBOARDING</span></footer>
+    <script src="app.js" defer></script>
+</body>
+</html>
